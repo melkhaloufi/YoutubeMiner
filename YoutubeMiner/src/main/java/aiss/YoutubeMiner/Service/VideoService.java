@@ -16,4 +16,10 @@ public class VideoService {
         return videoSnippet;
     }
 
+    public VideoSnippetSearch getOne(String key , String id) {
+        String uri = "https://www.googleapis.com/youtube/v3/search?key=" + key + "&channelId=" + id + "&part=snippet&type=video";
+        VideoSnippetSearch videoSnippet = restTemplate.getForObject(uri, VideoSnippetSearch.class);
+        return videoSnippet;
+    }
+
 }

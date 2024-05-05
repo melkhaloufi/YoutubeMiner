@@ -24,4 +24,15 @@ class VideoServiceTest {
         System.out.println("---------------------------------------------------------------" +
                 "-------------------------------------------");
     }
+
+    @Test
+    @DisplayName("Get All channel")
+    void getOne() {
+        VideoSnippetSearch video = service.getOne("AIzaSyD_sAw_5b53aSc8qx-G4sDCLhPOZ2H5JGU","UCPGxA_W_5MF4U1r9CMt6htg");
+        System.out.println("---------------------------------------------------------------" +
+                "-------------------------------------------");
+        System.out.println(video);
+        System.out.println("---------------------------------------------------------------" +
+                "-------------------------------------------");
+    }
 }
