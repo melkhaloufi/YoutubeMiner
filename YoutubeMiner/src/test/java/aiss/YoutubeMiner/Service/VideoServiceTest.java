@@ -15,9 +15,9 @@ class VideoServiceTest {
     @Autowired
     VideoService service;
     @Test
-    @DisplayName("Get All channel")
-    void getAllChannel() {
-        VideoSnippetSearch videos = service.getAllchannels("AIzaSyD_sAw_5b53aSc8qx-G4sDCLhPOZ2H5JGU");
+    @DisplayName("Get All Videos")
+    void getAllVideos() {
+        VideoSnippetSearch videos = service.getAllVideos("AIzaSyD_sAw_5b53aSc8qx-G4sDCLhPOZ2H5JGU");
         System.out.println("---------------------------------------------------------------" +
                 "-------------------------------------------");
         System.out.println(videos);
@@ -26,9 +26,9 @@ class VideoServiceTest {
     }
 
     @Test
-    @DisplayName("Get All channel")
-    void getOne() {
-        VideoSnippetSearch video = service.getOne("AIzaSyD_sAw_5b53aSc8qx-G4sDCLhPOZ2H5JGU","UCPGxA_W_5MF4U1r9CMt6htg");
+    @DisplayName("Get Videos From Channel")
+    void getVideosFromChannel() {
+        VideoSnippetSearch video = service.getVideosFromChannel("AIzaSyD_sAw_5b53aSc8qx-G4sDCLhPOZ2H5JGU","UC3xpvxkrp2nGyTd6XVWwUDw");
         System.out.println("---------------------------------------------------------------" +
                 "-------------------------------------------");
         System.out.println(video);
