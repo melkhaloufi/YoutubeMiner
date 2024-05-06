@@ -1,7 +1,6 @@
 package aiss.YoutubeMiner.Service;
 
 import aiss.YoutubeMiner.model.comment.CommentSearch;
-import aiss.YoutubeMiner.model.videoSnippet.VideoSnippetSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
