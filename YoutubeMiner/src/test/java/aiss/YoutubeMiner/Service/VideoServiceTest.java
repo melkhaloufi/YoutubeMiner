@@ -1,14 +1,14 @@
 package aiss.YoutubeMiner.Service;
 
-import aiss.YoutubeMiner.model.channel.ChannelSearch;
-import aiss.YoutubeMiner.model.videoSnippet.VideoSnippet;
+import aiss.YoutubeMiner.model.OneVideo.OneVideoSearch;
 import aiss.YoutubeMiner.model.videoSnippet.VideoSnippetSearch;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+
 @SpringBootTest
 class VideoServiceTest {
 
@@ -28,7 +28,18 @@ class VideoServiceTest {
     @Test
     @DisplayName("Get Videos From Channel")
     void getVideosFromChannel() {
-        VideoSnippetSearch video = service.getVideosFromChannel("AIzaSyD_sAw_5b53aSc8qx-G4sDCLhPOZ2H5JGU","UC3xpvxkrp2nGyTd6XVWwUDw");
+        List<VideoSnippetSearch> video = service.getVideosFromChannel("AIzaSyD_sAw_5b53aSc8qx-G4sDCLhPOZ2H5JGU","UC3xpvxkrp2nGyTd6XVWwUDw");
+        System.out.println("---------------------------------------------------------------" +
+                "-------------------------------------------");
+        System.out.println(video);
+        System.out.println("---------------------------------------------------------------" +
+                "-------------------------------------------");
+    }
+
+    @Test
+    @DisplayName("Get One Video")
+    void getOneVideo() {
+        OneVideoSearch video = service.getOneVideo("AIzaSyD_sAw_5b53aSc8qx-G4sDCLhPOZ2H5JGU","IYDVcriKjsw");
         System.out.println("---------------------------------------------------------------" +
                 "-------------------------------------------");
         System.out.println(video);

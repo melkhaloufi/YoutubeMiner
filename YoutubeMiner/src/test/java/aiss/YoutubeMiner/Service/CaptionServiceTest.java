@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class CaptionServiceTest {
@@ -16,7 +18,7 @@ class CaptionServiceTest {
     @Test
     @DisplayName("Get Captions From A Video")
     void getCaptionsFromVideo() {
-        CaptionSearch captions = service.getCaptionsFromVideo("AIzaSyD_sAw_5b53aSc8qx-G4sDCLhPOZ2H5JGU","IYDVcriKjsw");
+        List<CaptionSearch> captions = service.getCaptionsFromVideo("AIzaSyD_sAw_5b53aSc8qx-G4sDCLhPOZ2H5JGU","IYDVcriKjsw");
         System.out.println("---------------------------------------------------------------" +
                 "-------------------------------------------");
         System.out.println(captions);

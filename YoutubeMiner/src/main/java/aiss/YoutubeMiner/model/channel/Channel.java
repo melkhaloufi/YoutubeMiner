@@ -24,6 +24,18 @@ public class Channel {
         videos = new ArrayList<>();
     }
 
+    /*public Channel(String id, ChannelSnippet snippet) {
+        this.id = id;
+        this.snippet = snippet;
+        this.videos = new ArrayList<>();
+    }
+*/
+    public Channel(String id, ChannelSnippet snippet, List<VideoSnippet> videos) {
+        this.id = id;
+        this.snippet = snippet;
+        this.videos = new ArrayList<>(videos);
+    }
+
     @JsonProperty("videos")
     public List<VideoSnippet> getVideos(){ return videos; }
 

@@ -1,22 +1,20 @@
-
-package aiss.YoutubeMiner.model.videoSnippet;
-
-
+package aiss.YoutubeMiner.model.OneVideo;
 
 import aiss.YoutubeMiner.model.caption.Caption;
 import aiss.YoutubeMiner.model.comment.Comment;
-import com.fasterxml.jackson.annotation.*;
+import aiss.YoutubeMiner.model.videoSnippet.VideoSnippet;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class VideoSnippet {
-
+public class OneVideo {
     @JsonProperty("id")
-    private VideoSnippetId id;
+    private String id;
     @JsonProperty("snippet")
-    private VideoSnippetDetails snippet;
+    private OneVideoSnippet snippet;
 
     // These attributes have been manually added
     @JsonProperty("comments")
@@ -25,21 +23,7 @@ public class VideoSnippet {
     @JsonProperty("captions")
     private List<Caption> captions;
 
-    public VideoSnippet() {
-        this.comments = new ArrayList<>();
-        this.captions = new ArrayList<>();
-    }
-
-    public VideoSnippet(VideoSnippetId id, VideoSnippetDetails snippet, List<Comment> comments, List<Caption> captions) {
-        this.id = id;
-        this.snippet = snippet;
-        this.comments = new ArrayList<>(comments);
-        this.captions = new ArrayList<>(captions);
-    }
-
-    public VideoSnippet(VideoSnippetId id, VideoSnippetDetails snippet) {
-        this.id = id;
-        this.snippet = snippet;
+    public OneVideo() {
         this.comments = new ArrayList<>();
         this.captions = new ArrayList<>();
     }
@@ -63,22 +47,22 @@ public class VideoSnippet {
     }
 
     @JsonProperty("id")
-    public VideoSnippetId getId() {
+    public String getId() {
         return id;
     }
 
     @JsonProperty("id")
-    public void setId(VideoSnippetId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
     @JsonProperty("snippet")
-    public VideoSnippetDetails getSnippet() {
+    public OneVideoSnippet getSnippet() {
         return snippet;
     }
 
     @JsonProperty("snippet")
-    public void setSnippet(VideoSnippetDetails snippet) {
+    public void setSnippet(OneVideoSnippet snippet) {
         this.snippet = snippet;
     }
 
@@ -101,5 +85,4 @@ public class VideoSnippet {
         }
         return sb.toString();
     }
-
 }

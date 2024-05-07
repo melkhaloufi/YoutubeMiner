@@ -1,5 +1,6 @@
 package aiss.YoutubeMiner.Service;
 
+import aiss.YoutubeMiner.ModelPost.ChannelPost;
 import aiss.YoutubeMiner.model.channel.Channel;
 import aiss.YoutubeMiner.model.channel.ChannelSearch;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +16,7 @@ class ChannelServiceTest {
     @Autowired
     ChannelService service;
     @Test
-    @DisplayName("Get One channel")
+    @DisplayName("Get One channels")
     void getOneChannel() {
         ChannelSearch channel = service.findOne("AIzaSyD_sAw_5b53aSc8qx-G4sDCLhPOZ2H5JGU" , "UCPGxA_W_5MF4U1r9CMt6htg");
         System.out.println("---------------------------------------------------------------" +
@@ -32,6 +33,17 @@ class ChannelServiceTest {
         System.out.println("---------------------------------------------------------------" +
                 "-------------------------------------------");
         System.out.println(channels);
+        System.out.println("---------------------------------------------------------------" +
+                "-------------------------------------------");
+    }
+
+    @Test
+    @DisplayName("GetChannel")
+    void getChannel(){
+        ChannelPost channel = service.getChannel("AIzaSyD_sAw_5b53aSc8qx-G4sDCLhPOZ2H5JGU","UCPGxA_W_5MF4U1r9CMt6htg");
+        System.out.println("---------------------------------------------------------------" +
+                "-------------------------------------------");
+        System.out.println(channel);
         System.out.println("---------------------------------------------------------------" +
                 "-------------------------------------------");
     }
