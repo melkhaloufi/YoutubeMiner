@@ -4,9 +4,11 @@ import aiss.YoutubeMiner.ModelPost.CaptionPost;
 import aiss.YoutubeMiner.ModelPost.ChannelPost;
 import aiss.YoutubeMiner.ModelPost.CommentPost;
 import aiss.YoutubeMiner.ModelPost.VideoPost;
+import aiss.YoutubeMiner.model.caption.Caption;
 import aiss.YoutubeMiner.model.channel.Channel;
 import aiss.YoutubeMiner.model.channel.ChannelSearch;
 import aiss.YoutubeMiner.model.channel.ChannelSnippet;
+import aiss.YoutubeMiner.model.comment.Comment;
 import aiss.YoutubeMiner.model.videoSnippet.VideoSnippet;
 import aiss.YoutubeMiner.model.videoSnippet.VideoSnippetDetails;
 import aiss.YoutubeMiner.model.videoSnippet.VideoSnippetId;
@@ -44,35 +46,20 @@ public class ChannelService {
     }
 
     public ChannelPost getChannel(String key, String id) {
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity<ChannelSearch> request = new HttpEntity<ChannelSearch>(headers);
+        String uri = "https://www.googleapis.com/youtube/v3/channels?key=" + key + "&id=" + id + "&part=snippet";
+        ResponseEntity<ChannelSearch> response = restTemplate.getForEntity(uri, ChannelSearch.class);
 
-        String uri = "https://www.googleapis.com/youtube/v3/channels?key=" + key + "&part=snippet&id=" + id;
-        ResponseEntity<ChannelSearch> response = restTemplate.exchange(uri, HttpMethod.GET, request, ChannelSearch.class);
-        ChannelSearch channelSearch = response.getBody();
-        ChannelPost Channel = new ChannelPost(channelSearch.getItems().get(0).getId(),
-                channelSearch.getItems().get(0).getSnippet().getTitle(), channelSearch.getItems().get(0).getSnippet().getDescription(),
-                channelSearch.getItems().get(0).getSnippet().getPublishedAt());
-        // Add Videos
-        List<VideoSnippetSearch> videoSearch = videoService.getVideosFromChannel(key, id);
-        List<VideoPost> videos = new ArrayList<>();
+        Channel channel = response.getBody().getItems().get(0);
+        ChannelSnippet snippet = channel.getSnippet();
+        List<VideoPost> videos = videoService.findVideosByChannelId(key, id);
 
-        for (VideoSnippetSearch videoSnippetSearch : videoSearch) {
-            for (VideoSnippet videoSnippet : videoSnippetSearch.getItems()) {
-                VideoSnippetDetails snippet = videoSnippet.getSnippet(); // Get the snippet details
-                VideoSnippetId snippetId = videoSnippet.getId(); // Get the snippet id
-                String videoId = snippetId.getVideoId(); // Get the video id from the snippet id
-                String title = snippet.getTitle();
-                String description = snippet.getDescription();
-                String publishedAt = snippet.getPublishedAt();
-                //List<CommentPost> comments = videoSnippet.getComments(); // Accessing comments directly
-                //List<CaptionPost> captions = videoSnippet.getCaptions(); // Accessing captions directly
+        return new ChannelPost(
+                channel.getId(),
+                snippet.getTitle(),
+                snippet.getDescription(),
+                snippet.getPublishedAt(),
+                videos
+        );
+    }
 
-                // Create VideoPost object and add to videos list
-                VideoPost newVideo = new VideoPost(snippetId, title, description, publishedAt);//, comments, captions);
-                videos.add(newVideo);
-            }
-        }
-        Channel.setVideos(videos);
-        return Channel;
-    }}
+}

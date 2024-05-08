@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChannelPost {
-    @Id
     @JsonProperty("id")
     private String id;
 

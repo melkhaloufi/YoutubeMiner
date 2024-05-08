@@ -1,5 +1,6 @@
 package aiss.YoutubeMiner.Service;
 
+import aiss.YoutubeMiner.ModelPost.CommentPost;
 import aiss.YoutubeMiner.model.comment.CommentSearch;
 import aiss.YoutubeMiner.model.videoSnippet.VideoSnippetSearch;
 import org.junit.jupiter.api.DisplayName;
@@ -25,4 +26,15 @@ class CommentServiceTest {
         System.out.println("---------------------------------------------------------------" +
                 "-------------------------------------------");
     }
+
+    @Test
+    @DisplayName("Get Comments From A Video2")
+    void getComment() {
+        List<CommentPost> comments = service.findCommentsByVideoId("AIzaSyD_sAw_5b53aSc8qx-G4sDCLhPOZ2H5JGU","IYDVcriKjsw");
+        System.out.println("---------------------------------------------------------------" +
+                "-------------------------------------------");
+        System.out.println(comments);
+        System.out.println("---------------------------------------------------------------" +
+                "-------------------------------------------");
+}
 }

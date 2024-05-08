@@ -1,8 +1,12 @@
 package aiss.YoutubeMiner.Service;
 
+import aiss.YoutubeMiner.ModelPost.CaptionPost;
+import aiss.YoutubeMiner.model.caption.Caption;
 import aiss.YoutubeMiner.model.caption.CaptionSearch;
+import aiss.YoutubeMiner.model.caption.CaptionSnippet;
 import aiss.YoutubeMiner.model.comment.CommentSearch;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,6 +23,26 @@ public class CaptionService {
         List<CaptionSearch> captionSearchList = new ArrayList<>();
         captionSearchList.add(captionSearch);
         return captionSearchList;
+    }
+
+    public List<CaptionPost> findCaptionsByVideoId(String key, String id) {
+        String uri = "https://www.googleapis.com/youtube/v3/captions?part=snippet&videoId=" + id + "&key=" + key;
+        ResponseEntity<CaptionSearch> response = restTemplate.getForEntity(uri, CaptionSearch.class);
+
+        List<Caption> items = response.getBody().getItems();
+        List<CaptionPost> captions = new ArrayList<>();
+        for (int i = 0; i < items.size(); i++) {
+            Caption caption = items.get(i);
+            CaptionSnippet snippet = caption.getSnippet();
+
+            CaptionPost result = new CaptionPost();
+            result.setId(caption.getId());
+            result.setName(snippet.getName());
+            result.setLanguage(snippet.getLanguage());
+
+            captions.add(result);
+        }
+        return captions;
     }
 
 }

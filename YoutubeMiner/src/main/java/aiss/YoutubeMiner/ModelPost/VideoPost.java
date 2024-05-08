@@ -3,14 +3,15 @@ package aiss.YoutubeMiner.ModelPost;
 import aiss.YoutubeMiner.model.caption.Caption;
 import aiss.YoutubeMiner.model.comment.Comment;
 import aiss.YoutubeMiner.model.videoSnippet.VideoSnippetId;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class VideoPost {
     @JsonProperty("id")
-    private VideoSnippetId id;
+    private String id;
 
     @JsonProperty("name")
     private String name;
@@ -22,12 +23,12 @@ public class VideoPost {
     private String releaseTime;
 
     @JsonProperty("comments")
-    private List<Comment> comments;
+    private List<CommentPost> comments;
 
     @JsonProperty("captions")
-    private List<Caption> captions;
+    private List<CaptionPost> captions;
 
-    public VideoPost(VideoSnippetId id, String name, String description, String releaseTime) {
+    public VideoPost(String id, String name, String description, String releaseTime) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -36,7 +37,7 @@ public class VideoPost {
         this.captions = new ArrayList<>();
     }
 
-    public VideoPost(VideoSnippetId id, String name, String description, String releaseTime, List<Comment> comments, List<Caption> captions) {
+    public VideoPost(String id, String name, String description, String releaseTime, List<CommentPost> comments, List<CaptionPost> captions) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -45,11 +46,11 @@ public class VideoPost {
         this.captions = new ArrayList<>(captions);
     }
 
-    public VideoSnippetId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(VideoSnippetId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -77,19 +78,19 @@ public class VideoPost {
         this.releaseTime = releaseTime;
     }
 
-    public List<Comment> getComments() {
+    public List<CommentPost> getComments() {
         return comments;
     }
 
-    public void setComments(List<Comment> comments) {
+    public void setComments(List<CommentPost> comments) {
         this.comments = comments;
     }
 
-    public List<Caption> getCaptions() {
+    public List<CaptionPost> getCaptions() {
         return captions;
     }
 
-    public void setCaptions(List<Caption> captions) {
+    public void setCaptions(List<CaptionPost> captions) {
         this.captions = captions;
     }
 

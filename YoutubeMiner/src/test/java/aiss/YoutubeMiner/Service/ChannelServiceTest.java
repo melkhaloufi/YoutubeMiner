@@ -40,7 +40,7 @@ class ChannelServiceTest {
     @Test
     @DisplayName("GetChannel")
     void getChannel(){
-        ChannelPost channel = service.getChannel("AIzaSyD_sAw_5b53aSc8qx-G4sDCLhPOZ2H5JGU","UCPGxA_W_5MF4U1r9CMt6htg");
+        ChannelPost channel = service.getChannel("AIzaSyD_sAw_5b53aSc8qx-G4sDCLhPOZ2H5JGU","UCTdY7Fw0YMHCJ09jKTGy9Xw");
         System.out.println("---------------------------------------------------------------" +
                 "-------------------------------------------");
         System.out.println(channel);
