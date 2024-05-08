@@ -29,7 +29,7 @@ public class ChannelController {
 
         ChannelPost channel = channelService.getChannel(key, id);
 
-        String uri = "http://localhost:8080/gitminer/projects";
+        String uri = "http://localhost:8080/VideoMiner/channels";
         return template.postForObject(uri, channel, ChannelPost.class);
     }
     @GetMapping("/{key}/{id}")
