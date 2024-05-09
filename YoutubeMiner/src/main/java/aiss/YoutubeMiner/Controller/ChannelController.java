@@ -1,6 +1,8 @@
 package aiss.YoutubeMiner.Controller;
 
 import aiss.YoutubeMiner.ModelPost.ChannelPost;
+import aiss.YoutubeMiner.ModelPost.CommentPost;
+import aiss.YoutubeMiner.ModelPost.VideoPost;
 import aiss.YoutubeMiner.Service.ChannelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +30,19 @@ public class ChannelController {
                           @RequestHeader(defaultValue = "10") Integer maxComments) {
 
         ChannelPost channel = channelService.getChannel(key, id);
+        // Filter videos
+        List<VideoPost> videos = channel.getVideos();
+        if (maxVideos >= 0 && videos.size() > maxVideos) {
+            channel.setVideos(videos.subList(0, maxVideos));
+        }
+
+        // Filter comments for each video
+        for (VideoPost video : channel.getVideos()) {
+            List<CommentPost> comments = video.getComments();
+            if (maxComments >= 0 && comments.size() > maxComments) {
+                video.setComments(comments.subList(0, maxComments));
+            }
+        }
 
         String uri = "http://localhost:8080/VideoMiner/channels";
         return template.postForObject(uri, channel, ChannelPost.class);
@@ -39,6 +54,20 @@ public class ChannelController {
                               @RequestHeader(defaultValue = "10") Integer maxComments) {
 
         ChannelPost channel = channelService.getChannel(key, id);
+
+        // Filter videos
+        List<VideoPost> videos = channel.getVideos();
+        if (maxVideos >= 0 && videos.size() > maxVideos) {
+            channel.setVideos(videos.subList(0, maxVideos));
+        }
+
+        // Filter comments for each video
+        for (VideoPost video : channel.getVideos()) {
+            List<CommentPost> comments = video.getComments();
+            if (maxComments >= 0 && comments.size() > maxComments) {
+                video.setComments(comments.subList(0, maxComments));
+            }
+        }
         return channel;
     }
 }
