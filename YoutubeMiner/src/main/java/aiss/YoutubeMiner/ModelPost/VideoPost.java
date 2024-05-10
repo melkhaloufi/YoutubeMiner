@@ -28,6 +28,11 @@ public class VideoPost {
     @JsonProperty("captions")
     private List<CaptionPost> captions;
 
+    public VideoPost() {
+        comments = new ArrayList<>();
+        captions = new ArrayList<>();
+    }
+
     public VideoPost(String id, String name, String description, String releaseTime) {
         this.id = id;
         this.name = name;

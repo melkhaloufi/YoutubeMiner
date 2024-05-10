@@ -30,7 +30,7 @@ class CommentServiceTest {
     @Test
     @DisplayName("Get Comments From A Video2")
     void getComment() {
-        List<CommentPost> comments = service.findCommentsByVideoId("AIzaSyD_sAw_5b53aSc8qx-G4sDCLhPOZ2H5JGU","IYDVcriKjsw");
+        List<CommentPost> comments = service.findCommentsByVideoId("AIzaSyD_sAw_5b53aSc8qx-G4sDCLhPOZ2H5JGU","FlXWmIcUqBw");
         System.out.println("---------------------------------------------------------------" +
                 "-------------------------------------------");
         System.out.println(comments);
