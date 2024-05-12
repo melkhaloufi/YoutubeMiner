@@ -1,28 +1,15 @@
 package aiss.YoutubeMiner.Service;
 
-import aiss.YoutubeMiner.ModelPost.CaptionPost;
 import aiss.YoutubeMiner.ModelPost.ChannelPost;
-import aiss.YoutubeMiner.ModelPost.CommentPost;
 import aiss.YoutubeMiner.ModelPost.VideoPost;
-import aiss.YoutubeMiner.model.caption.Caption;
 import aiss.YoutubeMiner.model.channel.Channel;
 import aiss.YoutubeMiner.model.channel.ChannelSearch;
 import aiss.YoutubeMiner.model.channel.ChannelSnippet;
-import aiss.YoutubeMiner.model.comment.Comment;
-import aiss.YoutubeMiner.model.videoSnippet.VideoSnippet;
-import aiss.YoutubeMiner.model.videoSnippet.VideoSnippetDetails;
-import aiss.YoutubeMiner.model.videoSnippet.VideoSnippetId;
-import aiss.YoutubeMiner.model.videoSnippet.VideoSnippetSearch;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service

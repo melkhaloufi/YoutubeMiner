@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +46,7 @@ public class ChannelController {
         String uri = "http://localhost:8080/VideoMiner/channels";
         return template.postForObject(uri, channel, ChannelPost.class);
     }
+    //GET http://localhost:8082/YoutubeMiner/{key}/{id}[?maxVideos=10&maxComments=10]
     @GetMapping("/{key}/{id}")
     public ChannelPost getChannel(@PathVariable String key,
                               @PathVariable String id,
@@ -55,13 +55,10 @@ public class ChannelController {
 
         ChannelPost channel = channelService.getChannel(key, id);
 
-        // Filter videos
         List<VideoPost> videos = channel.getVideos();
         if (maxVideos >= 0 && videos.size() > maxVideos) {
             channel.setVideos(videos.subList(0, maxVideos));
         }
-
-        // Filter comments for each video
         for (VideoPost video : channel.getVideos()) {
             List<CommentPost> comments = video.getComments();
             if (maxComments >= 0 && comments.size() > maxComments) {

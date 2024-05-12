@@ -4,7 +4,6 @@ import aiss.YoutubeMiner.ModelPost.CaptionPost;
 import aiss.YoutubeMiner.model.caption.Caption;
 import aiss.YoutubeMiner.model.caption.CaptionSearch;
 import aiss.YoutubeMiner.model.caption.CaptionSnippet;
-import aiss.YoutubeMiner.model.comment.CommentSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
